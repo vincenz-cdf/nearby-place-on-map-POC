@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="places-list">
+        <div class="row">
+            <div class="col-12 card" *ngFor="let place of places">
+                <div class="card-body">
+                    <div>
+                        <img [src]="place.icon" [alt]="place.name" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <span style="font-weight: bold; font-size: 14;">{{ place.name }}</span><span
+                            style="font-style: italic; margin-right: 10px;"> - {{ place.vicinity }}</span>
+                        <button class="btn btn-sm btn-primary" (click)="onPlaceSelected(place)">Go!</button>
+                    </div>
+                    <div>
+                        <span *ngFor="let star of getStarRating(place.rating)">
+                            <i class="fa" [ngClass]="{
+                              'fa-star': star === 'full',
+                              'fa-star-half-o': star === 'half',
+                              'fa-star-o': star === 'empty'
+                            }"></i>
+                          </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div #mapContainer class="map-container">
+        <app-map></app-map>
+    </div>
+</div>
